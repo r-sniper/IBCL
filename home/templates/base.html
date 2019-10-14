@@ -1,0 +1,185 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {#<script src="{% static 'home/js/jquery.min.js' %}"></script>#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    {#<link href="{% static 'home/css/bootstrap.css' %}" rel="stylesheet" id="bootstrap-css">#}
+    {#<script src="{% static 'home/js/bootstrap.min.js' %}"></script>#}
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
+    <title>IBCL 2019</title>
+
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    {#    <link href="{% static 'home/fonts/fontawesome-free-5.5.0-web/css/all.css' %}" rel="stylesheet" id="bootstrap-css">#}
+
+    <link rel="stylesheet" href="{% static 'test.css' %}">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet"
+          type="text/css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light justify-content-end fixed-top">
+    <a class="navbar-brand" href="#">
+        {#                <img src="/images/logo/QuickWash-navbar.svg" width="30" height="30" class="d-inline-block align-top">#}
+        {#        <img src="" width="30" height="30" class="glyphicon glyphicon-magnet">#}
+
+        <i class="material-icons">local_drink</i>
+        <span>IBCL</span>
+    </a>
+    <div class="collapse navbar-collapse mr-auto" id="navbarNavDropdown">
+
+    </div>
+</nav>
+
+
+<div class="page-wrapper chiller-theme toggled" style="margin-top: 10%">
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+        <i class="fas fa-bars"></i>
+    </a>
+
+    <div class="container">
+
+        <form method="post" action="{% url 'home:register'%}">
+        {% csrf_token %}
+            <h2>
+                IBCL 2019 Team Registration
+            </h2>
+            <div class="form-group">
+                <div class="row"></div>
+                <div class="col-md-6">
+                    <label for="team_name">Team Name</label>
+                    <input type="text" required="required" class="form-control" id="team_name" name="team_name">
+                </div>
+            </div>
+
+            <div class="input-group row mb-3">
+                <div class="col-md-6">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="t_shirt_colour">Team T-Shirt Colour</label>
+                        <select class="custom-select" id="t_shirt_colour" name="t_shirt_colour">
+                            {% for each_colour in t_shirt_colour %}
+                                <option value="{{ each_colour.pk }}">{{ each_colour.colour_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+            <div>
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Player Name</th>
+                        <th scope="col">Printing Name</th>
+                        <th scope="col">T-Shirt Number</th>
+                        <th scope="col">T-Shirt Size</th>
+                        <th scope="col">Captain</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in player_size %}
+                        <tr>
+                            <th scope="row">{{ i }}</th>
+                            <td><input required="required" type="text" class="form-control" id="player_name_{{ i }}"
+                                       name="player_name_{{ i }}"></td>
+                            <td><input required="required" type="text" class="form-control"
+                                       id="player_print_name_{{ i }}"
+                                       name="player_print_name_{{ i }}"></td>
+                            <td><input required="required" type="text" class="form-control"
+                                       id="player_t_shirt_number_{{ i }}"
+                                       name="player_t_shirt_number_{{ i }}"></td>
+                            <td><select class="custom-select" id="player_t_shirt_size_{{ i }}"
+                                        name="player_t_shirt_size_{{ i }}">
+                                {% for each_size in t_shirt_size %}
+                                    <option value="{{ each_size.pk }}">{{ each_size.size }}</option>
+                                {% endfor %}
+                            </select>
+                            </td>
+                            <td><input required="required" type="radio" name="is_captain" value="{{ i }}"></td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <th scope="row">8</th>
+                        <td><input type="text" class="form-control" id="player_name_8"
+                                   name="player_name_8"></td>
+                        <td><input  type="text" class="form-control"
+                                   id="player_print_name_8"
+                                   name="player_print_name_8"></td>
+                        <td><input  type="text" class="form-control"
+                                   id="player_t_shirt_number8"
+                                   name="player_t_shirt_number8"></td>
+                        <td><select class="custom-select" id="player_t_shirt_size_8"
+                                    name="player_t_shirt_size_8">
+                            {% for each_size in t_shirt_size %}
+                                <option value="{{ each_size.pk }}">{{ each_size.size }}</option>
+                            {% endfor %}
+                        </select>
+                        </td>
+                        <td><input required="required" type="radio" name="is_captain" value="8"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+
+                <button class="inline-group btn btn-primary"> Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- sidebar-wrapper  -->
+{% block content %}
+{% endblock content %}
+
+<!-- page-content" -->
+</div>
+<!-- page-wrapper -->
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>#}
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"#}
+{#        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"#}
+{#        crossorigin="anonymous"></script>#}
+
+
+<script src="{% static 'test.js' %}"></script>
+<script src="{% static 'popper.js' %}"></script>
+<script src="{% static 'sweet-alert.min.js' %}"></script>
+
+{% block scripts %}
+
+{% endblock scripts %}
+
+<script>
+    $(document).ready(function () {
+        console.log("{{ message_type }}");
+        if ("{{ message_type }}") {
+            swal("{{ message_title }}", "{{ message }}", '{{ message_type }}');
+        }
+    });
+
+    {% block on_ready %}
+
+    {% endblock on_ready %}
+
+</script>
+
+
+</body>
+
+</html>
