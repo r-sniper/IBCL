@@ -46,7 +46,11 @@
 </nav>
 
 
-<div class="page-wrapper chiller-theme toggled" style="margin-top: 10%">
+<div class="page-wrapper chiller-theme toggled" style="margin-top: 9%">
+
+<div>
+
+</div>
     <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
         <i class="fas fa-bars"></i>
     </a>
@@ -58,10 +62,14 @@
             <h2>
                 IBCL 2019 Team Registration
             </h2>
+			<br>
+<h3> Instructions </h3>
+{{instructions|safe}}
+<br>
             <div class="form-group">
                 <div class="row"></div>
-                <div class="col-md-6">
-                    <label for="team_name">Team Name</label>
+                <div class="col-md-6" style="padding-left:0">
+                    <label for="team_name" style="font-size:1.5em">Team Name</label>
                     <input type="text" required="required" class="form-control" id="team_name" name="team_name">
                 </div>
             </div>
@@ -69,7 +77,7 @@
             <div class="input-group row mb-3">
                 <div class="col-md-6">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="t_shirt_colour">Team T-Shirt Colour</label>
+                        <label class="input-group-text" for="t_shirt_colour">Choose your Colour</label>
                         <select class="custom-select" id="t_shirt_colour" name="t_shirt_colour">
                             {% for each_colour in t_shirt_colour %}
                                 <option value="{{ each_colour.pk }}">{{ each_colour.colour_name }}</option>
@@ -81,14 +89,14 @@
             </div>
             <div>
                 <table class="table table-hover">
-                    <thead class="thead-dark">
+                    <thead class="thead-dark" align="center">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Player Name</th>
-                        <th scope="col">Printing Name</th>
-                        <th scope="col">T-Shirt Number</th>
-                        <th scope="col">T-Shirt Size</th>
-                        <th scope="col">Captain</th>
+                        <th scope="col">Name on Jersey</th>
+                        <th scope="col">Jersey Number !</th>
+                        <th scope="col">Jersey Size</th>
+                        <th scope="col">Who's your Dhoni ? (Captain)</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -100,7 +108,7 @@
                             <td><input required="required" type="text" class="form-control"
                                        id="player_print_name_{{ i }}"
                                        name="player_print_name_{{ i }}"></td>
-                            <td><input required="required" type="text" class="form-control"
+                            <td><input required="required" type="number" class="form-control"
                                        id="player_t_shirt_number_{{ i }}"
                                        name="player_t_shirt_number_{{ i }}"></td>
                             <td><select class="custom-select" id="player_t_shirt_size_{{ i }}"
@@ -110,7 +118,7 @@
                                 {% endfor %}
                             </select>
                             </td>
-                            <td><input required="required" type="radio" name="is_captain" value="{{ i }}"></td>
+                            <td align="center"><input required="required" type="radio" name="is_captain" value="{{ i }}" align="center"></td>
                         </tr>
                     {% endfor %}
                     <tr>
@@ -121,8 +129,8 @@
                                    id="player_print_name_8"
                                    name="player_print_name_8"></td>
                         <td><input  type="text" class="form-control"
-                                   id="player_t_shirt_number8"
-                                   name="player_t_shirt_number8"></td>
+                                   id="player_t_shirt_number_8"
+                                   name="player_t_shirt_number_8"></td>
                         <td><select class="custom-select" id="player_t_shirt_size_8"
                                     name="player_t_shirt_size_8">
                             {% for each_size in t_shirt_size %}
@@ -130,7 +138,7 @@
                             {% endfor %}
                         </select>
                         </td>
-                        <td><input required="required" type="radio" name="is_captain" value="8"></td>
+                        <td align="center"></><input required="required" type="radio" name="is_captain" value="8"></td>
                     </tr>
                     </tbody>
                 </table>
